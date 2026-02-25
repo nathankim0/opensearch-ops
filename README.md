@@ -50,27 +50,59 @@ claude plugin install opensearch-ops
 claude --plugin-dir /path/to/opensearch-ops
 ```
 
-## 환경 변수
+## 인증 설정
 
-OpenSearch 클러스터에 연결하려면 아래 환경 변수를 설정하세요:
+MCP 서버는 **서버-투-서버 통신**이므로, 브라우저 기반 인증(Google OAuth, SAML 등)은 지원되지 않습니다.
+아래 세 가지 방식 중 하나를 선택하세요.
+
+### 방법 1: Basic Auth — Internal User (권장)
+
+가장 간단한 방법입니다. OpenSearch Dashboards에서 API 전용 Internal User를 생성합니다.
+
+**생성 방법:** Dashboards → Security → Internal Users → Create internal user
+
+> 관리자 권한이 없다면 인프라 담당자에게 요청하세요:
+> "OpenSearch에 API 조회용 Internal User 하나 만들어주세요. `readall` 역할이면 충분합니다."
 
 ```bash
 # ~/.zshrc 또는 ~/.bashrc 에 추가
 export OPENSEARCH_URL="https://your-opensearch-cluster:9200"
+export OPENSEARCH_USERNAME="mcp-reader"
+export OPENSEARCH_PASSWORD="발급받은비밀번호"
+export OPENSEARCH_SSL_VERIFY="true"
+```
+
+### 방법 2: AWS IAM 인증 (SigV4)
+
+IAM 유저/역할에 OpenSearch 접근 권한(`es:ESHttp*`)이 있어야 합니다.
+
+```bash
+export OPENSEARCH_URL="https://your-domain.ap-northeast-2.es.amazonaws.com"
+export AWS_REGION="ap-northeast-2"
+# AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY 또는 AWS_PROFILE 설정 필요
+```
+
+> **주의:** S3 전용 IAM 유저 등 OpenSearch 권한이 없는 유저로는 403 에러가 발생합니다.
+
+### 방법 3: Self-managed OpenSearch
+
+직접 운영하는 클러스터의 경우:
+
+```bash
+export OPENSEARCH_URL="https://localhost:9200"
 export OPENSEARCH_USERNAME="admin"
-export OPENSEARCH_PASSWORD="your-password"
+export OPENSEARCH_PASSWORD="admin"
 export OPENSEARCH_SSL_VERIFY="false"  # self-signed cert인 경우
 ```
 
-### AWS OpenSearch Service
+### 지원하지 않는 인증 방식
 
-AWS 환경에서는 IAM 인증을 사용할 수 있습니다:
-
-```bash
-export OPENSEARCH_URL="https://your-domain.us-east-1.es.amazonaws.com"
-export AWS_REGION="us-east-1"
-# IAM 역할 기반 인증은 자동으로 처리됩니다
-```
+| 방식 | 지원 여부 | 대안 |
+|------|-----------|------|
+| Basic Auth (Internal User) | **지원** | — |
+| AWS IAM (SigV4) | **지원** | — |
+| Google OAuth / SAML / OIDC | **미지원** | Internal User 생성 |
+| 브라우저 토큰 가로채기 | **미지원** | Internal User 생성 |
 
 ## 사용 예시
 
