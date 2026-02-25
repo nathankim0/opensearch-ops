@@ -135,7 +135,8 @@ export OPENSEARCH_SSL_VERIFY="false"  # self-signed cert인 경우
 ```
 opensearch-ops/
 ├── .claude-plugin/
-│   └── plugin.json          # 플러그인 매니페스트
+│   ├── plugin.json          # 플러그인 매니페스트
+│   └── marketplace.json     # 마켓플레이스 메타데이터
 ├── .mcp.json                # OpenSearch MCP 서버 설정
 ├── skills/
 │   ├── investigate/         # 장애 조사 (메인 스킬)
@@ -146,7 +147,6 @@ opensearch-ops/
 │   │   └── SKILL.md
 │   └── cluster-health/      # 클러스터 상태
 │       └── SKILL.md
-│   └── marketplace.json     # 마켓플레이스 메타데이터
 ├── setup.sh                 # 원클릭 설치 스크립트
 ├── LICENSE
 └── README.md
