@@ -38,7 +38,7 @@ chmod +x setup.sh && ./setup.sh
 
 ```bash
 # 마켓플레이스 등록
-claude plugin marketplace add https://raw.githubusercontent.com/nathankim0/opensearch-ops/main/marketplace.json
+claude plugin marketplace add nathankim0/opensearch-ops
 
 # 플러그인 설치
 claude plugin install opensearch-ops
@@ -114,7 +114,7 @@ opensearch-ops/
 │   │   └── SKILL.md
 │   └── cluster-health/      # 클러스터 상태
 │       └── SKILL.md
-├── marketplace.json         # 마켓플레이스 메타데이터
+│   └── marketplace.json     # 마켓플레이스 메타데이터
 ├── setup.sh                 # 원클릭 설치 스크립트
 ├── LICENSE
 └── README.md

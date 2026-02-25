@@ -97,7 +97,7 @@ if [ -f "$SCRIPT_DIR/.claude-plugin/plugin.json" ]; then
   echo "    claude --plugin-dir $SCRIPT_DIR"
   echo ""
   echo "  ${BOLD}방법 2: 마켓플레이스에서 설치${NC}"
-  echo "    claude plugin marketplace add https://raw.githubusercontent.com/nathankim0/opensearch-ops/main/marketplace.json"
+  echo "    claude plugin marketplace add nathankim0/opensearch-ops"
   echo "    claude plugin install opensearch-ops"
   echo ""
 else
