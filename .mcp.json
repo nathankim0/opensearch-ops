@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "opensearch": {
+      "command": "uvx",
+      "args": ["opensearch-mcp-server-py"],
+      "env": {
+        "OPENSEARCH_URL": "${OPENSEARCH_URL:-https://localhost:9200}",
+        "OPENSEARCH_USERNAME": "${OPENSEARCH_USERNAME:-admin}",
+        "OPENSEARCH_PASSWORD": "${OPENSEARCH_PASSWORD}",
+        "OPENSEARCH_SSL_VERIFY": "${OPENSEARCH_SSL_VERIFY:-false}"
+      }
+    }
+  }
+}

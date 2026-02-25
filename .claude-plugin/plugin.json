@@ -1,0 +1,14 @@
+{
+  "name": "opensearch-ops",
+  "version": "1.0.0",
+  "description": "OpenSearch MCP 서버 + 장애 조사/로그 분석 스킬을 제공하는 Claude Code 플러그인",
+  "author": {
+    "name": "nathankim0",
+    "url": "https://github.com/nathankim0"
+  },
+  "repository": "https://github.com/nathankim0/opensearch-ops",
+  "license": "MIT",
+  "keywords": ["opensearch", "mcp", "log-analysis", "incident-investigation", "observability"],
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/"
+}
